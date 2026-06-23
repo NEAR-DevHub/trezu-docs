@@ -45,7 +45,9 @@
         "pages": [
           "payments/single-payment",
           "payments/bulk-payment",
+          "payments/address-book",
           "payments/handling-requests",
+          "payments/receipts",
           "swap"
         ]
       },
