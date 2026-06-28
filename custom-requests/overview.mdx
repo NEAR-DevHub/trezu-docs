@@ -1,0 +1,102 @@
+---
+title: "Custom Requests"
+description: "Author reusable forms that let your treasury file any on-chain call as a proposal, with no developer needed"
+---
+
+Trezu creates the everyday treasury proposals (payments, transfers, swaps, staking) for you. But a treasury is a SputnikDAO, and a SputnikDAO can call **any method on any contract**. Trezu could already display those calls when someone else created them. It just had no way to **create** them.
+
+**Custom Requests** close that gap. A treasury authors a reusable form once, and members fill that form to file an arbitrary on-chain call as a normal request, with no hand-written arguments and no developer needed.
+
+<Info>
+  A custom request is still a regular treasury request. It goes through the same approvals and execution as a payment or a role change, so a template never grants authority by itself.
+</Info>
+
+***
+
+## Turning it on
+
+Custom Requests ship disabled. A member with the **[Governance](/governance/members-and-roles#governance) role** enables it from **`Settings`** -> **`Developer`**.
+
+{/* screenshot: Settings -> Developer, the Custom Requests toggle */}
+
+Once enabled, a **`Request Templates`** section appears in the left sidebar for everyone on the team.
+
+<Warning>
+  Enabling the feature is gated on the same on-chain permission that gates changing the treasury policy. A regular member can see and use templates, but only a Governance member can turn the feature on or author templates.
+</Warning>
+
+***
+
+## How it works
+
+A custom request moves through three stages, each with its own permission.
+
+<Steps>
+  <Step title="Author a template">
+    A Governance member opens **`Request Templates`** and builds a template: the contract and method to call, plus the form a member will fill. This is saved to your treasury and reused.
+  </Step>
+  <Step title="Fill the form">
+    Any member opens the template, fills the inputs (an amount, an account, a message), and submits. Trezu turns the filled form into the on-chain call for them.
+  </Step>
+  <Step title="Approve and execute">
+    The submission becomes a `Pending` request in the **`Requests`** section, where the team reviews and votes on it like any other request. On approval, the treasury executes the call.
+  </Step>
+</Steps>
+
+The template author fixes the parts that must not change (the contract, the method, the attached deposit, and the gas). Members only ever supply the **arguments** to the call. They cannot redirect it to a different contract or method.
+
+***
+
+## Two ways to author
+
+A template is defined by a **manifest**, a small JSON document. The editor offers two modes over the same manifest, and you can switch between them at any time.
+
+<CardGroup cols={2}>
+  <Card title="Visual" icon="table-cells">
+    A form builder. You describe the call and its inputs without writing JSON. This is the default and covers most templates.
+  </Card>
+  <Card title="Code" icon="code">
+    A JSON editor over the same manifest, with live validation. Useful for pasting a manifest in or making power edits.
+  </Card>
+</CardGroup>
+
+### The Visual editor is arguments-first
+
+The call is the unit you build. Each **argument** to the call is one of two things:
+
+- **Static** — a fixed value the author sets (a piece of text, a number, a flag). It is the same on every request.
+- **Member input** — a value the member fills in when they file. The input's name becomes the argument, so naming the input names the argument.
+
+Anything you reference as a member input automatically becomes a field on the form. The author lays out the call, and the form builds itself from it.
+
+***
+
+## Build a template with an AI assistant
+
+You do not have to write the manifest by hand. We publish a portable AI **skill** that walks an assistant through building a template for you. You describe the proposal in plain English, the assistant asks what is fixed and what a member fills, and it returns a valid manifest to paste into the **Code** tab. This is the fastest path for a non-developer.
+
+The skill is self-contained, so it works without any access to the Trezu codebase. Install it into your assistant of choice:
+
+<CardGroup cols={2}>
+  <Card title="Get the skill" icon="github" href="https://github.com/NEAR-DevHub/trezu/tree/main/skills/trezu-custom-proposal-template">
+    The `trezu-custom-proposal-template` skill, with a README covering Claude Code, Claude.ai, and Codex.
+  </Card>
+  <Card title="Use it in Claude Code" icon="terminal">
+    Drop the folder into `~/.claude/skills/`, then ask: "Build a Trezu custom proposal template that pays USDC to a recipient each month."
+  </Card>
+</CardGroup>
+
+<Tip>
+  See the [Manifest DSL reference](/custom-requests/manifest-dsl) for the full shape of a manifest, useful both for hand-authoring and for checking what an assistant generated.
+</Tip>
+
+***
+
+## Who can do what
+
+| Action | Required |
+|--------|----------|
+| Enable the feature | Governance role |
+| Author, edit, or delete a template | Governance role |
+| See and fill a template | Team membership |
+| Approve the resulting request | The normal voting rules for that treasury |

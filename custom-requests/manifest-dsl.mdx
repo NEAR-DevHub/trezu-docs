@@ -1,0 +1,158 @@
+---
+title: "Manifest DSL Reference"
+description: "The JSON shape that defines a custom request template: the call, the form, and the arguments"
+---
+
+A template is a JSON object called a **manifest**. It defines the on-chain call to make, the form a member fills, and how the filled values map into the call's arguments. This page is the full reference for that shape, useful when you hand-author a template in the **Code** tab or check a manifest an AI assistant produced.
+
+For what the feature is and how to enable it, see [Custom Requests](/custom-requests/overview).
+
+<Tip>
+  You do not have to write this by hand. An AI assistant can produce a manifest from a plain-English description. Install the [`trezu-custom-proposal-template` skill](https://github.com/NEAR-DevHub/trezu/tree/main/skills/trezu-custom-proposal-template) and paste its output into the **Code** tab, then use this page to check the result.
+</Tip>
+
+***
+
+## The manifest
+
+A manifest is a JSON object. `version` is `1`, the only shape this schema describes.
+
+| Key | Required | Notes |
+|-----|----------|-------|
+| `version` | yes | The literal `1`. |
+| `id` | yes | A slug using `[A-Za-z0-9_-]`, unique within your treasury. It is both the template's page address and the marker stamped on every request it files. Reserved: `create`, `new`, `about`. |
+| `title` | yes | A human title for the template. |
+| `description` | no | A longer explanation, shown to the member filling the form. |
+| `icon` | no | An optional icon name. |
+| `summary` | no | A one-line human summary shown while filing. It may use `{{placeholders}}`. |
+| `binding` | yes | The fixed on-chain call. See below. |
+| `fields` | yes | The form inputs. See below. |
+| `args` | yes | The call's arguments. See below. |
+
+***
+
+## `binding` — the call
+
+`binding` is the part of the call the author fixes. A member can never change it.
+
+```json
+"binding": {
+  "receiver_id": "guestbook.near",
+  "method_name": "add_message",
+  "deposit": "1",
+  "gas": "30000000000000"
+}
+```
+
+| Key | Notes |
+|-----|-------|
+| `receiver_id` | The contract to call. |
+| `method_name` | The method to call on it. |
+| `deposit` | The attached deposit in yoctoNEAR, as a whole-number string. |
+| `gas` | The gas to attach, as a whole-number string. |
+
+<Warning>
+  `deposit` and `gas` are whole-number strings in base units, never decimals and never JSON numbers. NEAR amounts are larger than a normal number can hold without losing precision, so they stay as strings. For example, 1.1 NEAR is written `"1100000000000000000000000"` yoctoNEAR.
+</Warning>
+
+***
+
+## `fields` — the form inputs
+
+`fields` is an array. Each field describes one input on the form.
+
+```json
+{ "name": "amount", "label": "Tip amount", "type": "amount", "required": true }
+```
+
+| Key | Notes |
+|-----|-------|
+| `name` | The input's key, using `[A-Za-z0-9_]`, unique within the manifest. This is what `{{placeholders}}` reference. |
+| `label` | The text shown above the input. |
+| `type` | One of the types below. |
+| `required` | Optional flag. Not allowed on `bool`, since a toggle always submits a value. |
+| `default` | Optional starting value. Must match the field's `type`. |
+| `help` | Optional hint shown under the input. |
+| `options` | Required for `select`, not allowed otherwise. An array of strings. |
+| `validation` | Optional rules. See below. |
+
+### Field types
+
+| `type` | Renders and validates as |
+|--------|--------------------------|
+| `account` | A NEAR account id, with its shape checked. |
+| `token` | An omni token id such as `base-0x...`, as free text. |
+| `uint` | A whole-number string, safe for large values. |
+| `amount` | A whole-number string in base units, safe for large values. No decimals. |
+| `number` | A plain numeric value, for counts and ratios, not for token amounts. |
+| `text` | Free text. |
+| `select` | A dropdown of `options`. |
+| `bool` | A toggle. |
+| `json` | Raw JSON text. |
+
+### `validation`
+
+| Rule | Notes |
+|------|-------|
+| `min` / `max` | Whole-number strings. Only on the numeric types (`uint`, `amount`, `number`). |
+| `pattern` | A regular expression that must compile. Only on `text` and `number`. |
+
+<Note>
+  Use `amount` or `uint` (not `number`) for anything that becomes a token amount or other large on-chain value. These stay as digit strings the whole way through, so a value larger than a normal number can hold survives without being rounded.
+</Note>
+
+***
+
+## `args` — the call's arguments
+
+`args` is a JSON object, the literal arguments passed to the method. Any string value can contain `{{name}}` placeholders that reference a field by its `name`. When a member files the request, each placeholder is replaced with the value they entered.
+
+```json
+"args": {
+  "app":    "trezu",
+  "text":   "{{message}}",
+  "amount": "{{tip}}",
+  "meta":   "{\"by\":\"{{author}}\"}"
+}
+```
+
+In this example `app` is a fixed value, `text` and `amount` are taken straight from member inputs, and `meta` composes a member input into a larger string.
+
+A value does not have to be a string. `args` can hold any JSON, including numbers, booleans, `null`, nested objects, and arrays. Non-string values are sent to the contract exactly as written, because placeholders are only ever resolved inside strings.
+
+Rules:
+
+- Every `{{placeholder}}` must reference a declared field. A reference to a name that does not exist is an error.
+- To write a literal `{{message}}` without it being treated as a placeholder, double the braces as `{{{{message}}}}`. It collapses to `{{message}}` in the output.
+- Composing values is just putting more than one placeholder in a string. `"{{first}}.{{last}}"` becomes `"alice.near"`.
+
+***
+
+## A complete example
+
+A template that sets a greeting on a guestbook contract:
+
+```json
+{
+  "version": 1,
+  "id": "set-greeting",
+  "title": "Set Greeting",
+  "binding": {
+    "receiver_id": "guestbook.near",
+    "method_name": "set_greeting",
+    "deposit": "0",
+    "gas": "30000000000000"
+  },
+  "fields": [
+    { "name": "greeting", "label": "Greeting", "type": "text", "required": true }
+  ],
+  "args": { "greeting": "{{greeting}}" },
+  "summary": "Set greeting to {{greeting}}"
+}
+```
+
+***
+
+## What a filled template produces
+
+Filling and submitting the form above creates one treasury request: a `FunctionCall` to `guestbook.near` running `set_greeting`, with the member's greeting as the argument, the fixed `deposit` and `gas` from the binding, and a description carrying the template's title and an automatic marker that records which template filed it. From there it is an ordinary request that the team approves and the treasury executes.

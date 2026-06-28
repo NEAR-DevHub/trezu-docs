@@ -50,6 +50,13 @@
         ]
       },
       {
+        "group": "Custom Requests",
+        "pages": [
+          "custom-requests/overview",
+          "custom-requests/manifest-dsl"
+        ]
+      },
+      {
         "group": "Finance",
         "pages": [
           "payments/single-payment",
