@@ -3,17 +3,17 @@ title: "Manifest DSL Reference"
 description: "The JSON shape that defines a custom request template: the call, the form, and the arguments"
 ---
 
-A template is a JSON object called a **manifest**. It defines the on-chain call to make, the form a member fills, and how the filled values map into the call's arguments. This page is the full reference for that shape, useful when you hand-author a template in the **Code** tab or check a manifest an AI assistant produced.
+A template is a JSON object called a **manifest**. It defines the on-chain call to make, the form a member fills, and how the filled values map into the call's arguments. This page is the full reference for that shape, useful when you hand-author a template in the **`Code`** tab or check a manifest an AI assistant produced.
 
 For what the feature is and how to enable it, see [Custom Requests](/custom-requests/overview).
 
 <Tip>
-  You do not have to write this by hand. An AI assistant can produce a manifest from a plain-English description. Install the [`trezu-custom-proposal-template` skill](https://github.com/NEAR-DevHub/trezu/tree/main/docs/trezu-custom-proposal-template) and paste its output into the **Code** tab, then use this page to check the result.
+  You do not have to write this by hand. An AI assistant can produce a manifest from a plain-English description. Install the [`trezu-custom-proposal-template` skill](https://github.com/NEAR-DevHub/trezu/tree/main/docs/trezu-custom-proposal-template) and paste its output into the **`Code`** tab, then use this page to check the result.
 </Tip>
 
 ***
 
-## The manifest
+## The Manifest
 
 A manifest is a JSON object. `version` is `1`, the only shape this schema describes.
 
@@ -31,7 +31,7 @@ A manifest is a JSON object. `version` is `1`, the only shape this schema descri
 
 ***
 
-## `binding` — the call
+## `binding` - The Call
 
 `binding` is the part of the call the author fixes. A member can never change it.
 
@@ -57,7 +57,7 @@ A manifest is a JSON object. `version` is `1`, the only shape this schema descri
 
 ***
 
-## `fields` — the form inputs
+## `fields` - The Form Inputs
 
 `fields` is an array. Each field describes one input on the form.
 
@@ -76,7 +76,7 @@ A manifest is a JSON object. `version` is `1`, the only shape this schema descri
 | `options` | Required for `select`, not allowed otherwise. An array of strings. |
 | `validation` | Optional rules. See below. |
 
-### Field types
+### Field Types
 
 | `type` | Renders and validates as |
 |--------|--------------------------|
@@ -103,7 +103,7 @@ A manifest is a JSON object. `version` is `1`, the only shape this schema descri
 
 ***
 
-## `args` — the call's arguments
+## `args` - The Call's Arguments
 
 `args` is a JSON object, the literal arguments passed to the method. Any string value can contain `{{name}}` placeholders that reference a field by its `name`. When a member files the request, each placeholder is replaced with the value they entered.
 
@@ -128,7 +128,7 @@ Rules:
 
 ***
 
-## A complete example
+## A Complete Example
 
 A template that sets a greeting on a guestbook contract:
 
@@ -153,6 +153,6 @@ A template that sets a greeting on a guestbook contract:
 
 ***
 
-## What a filled template produces
+## What a Filled Template Produces
 
 Filling and submitting the form above creates one treasury request: a `FunctionCall` to `guestbook.near` running `set_greeting`, with the member's greeting as the argument, the fixed `deposit` and `gas` from the binding, and a description carrying the template's title and an automatic marker that records which template filed it. From there it is an ordinary request that the team approves and the treasury executes.
