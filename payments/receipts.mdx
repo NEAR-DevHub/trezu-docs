@@ -3,7 +3,7 @@ title: "Generating Receipts"
 description: "Create a printable receipt for an executed request"
 ---
 
-Once a request has been executed, Trezu can generate a receipt for it - a clean, printable confirmation of the transaction that you can save as a PDF or share as a link.
+Once a request has been executed, Trezu can generate a receipt for it — a clean, printable confirmation of the transaction that you can save as a PDF or share as a link. Use receipts to share proof of payment with a vendor, attach to invoices, or keep for your accounting and audit records.
 
 Receipts are available for the following executed request types:
 
@@ -12,7 +12,7 @@ Receipts are available for the following executed request types:
 - [Confidential payments](/guides/confidential-payments)
 
 <Note>
-  Receipts are available once a request has been **executed** - meaning the payment already happened on-chain. Requests that are still pending, rejected, or expired do not have a receipt.
+  Receipts are available once a request has been **executed** — meaning the payment already happened on-chain. Requests that are still pending, rejected, or expired do not have a receipt.
 </Note>
 
 ***
@@ -39,10 +39,12 @@ In the request details, click the **`Generate Receipt`** button. The receipt ope
 
 ![Receipt](/assets/docs/payments/receipt.png)
 
+Each receipt shows the sender (treasury), the recipient, the token, the amount and its USD value, the network, the exchange rate, and the date and time the transaction was executed.
+
 From the receipt page you can:
 
-- **`Print or Save PDF`** - opens your browser's print dialog, where you can print the receipt or save it as a PDF.
-- **`Copy Link`** - copies a shareable link to the receipt.
+- **`Print or Save PDF`** — opens your browser's print dialog, where you can print the receipt or save it as a PDF.
+- **`Copy Link`** — copies a shareable link to the receipt.
 
 <Warning>
   The **`Copy Link`** option is not available for [confidential treasuries](/confidential-treasuries), as receipt links are kept private.
@@ -54,8 +56,4 @@ From the receipt page you can:
 
 <Accordion title="Why can't I see the Generate Receipt button?">
   The button only appears once the request has been executed. If it is still pending, was rejected, or expired, no receipt is available.
-</Accordion>
-
-<Accordion title="What does the receipt include?">
-  The receipt shows the sender (treasury), the recipient, the token, the amount and its USD value, the network, the exchange rate, and the date and time the transaction was executed.
 </Accordion>
