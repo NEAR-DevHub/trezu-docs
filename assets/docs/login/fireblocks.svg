@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="23.941799"
+   height="24"
+   viewBox="0 0 23.941799 24"
+   fill="none"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="fireblocks.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="5.7755252"
+     inkscape:cx="18.266737"
+     inkscape:cy="17.660732"
+     inkscape:window-width="1104"
+     inkscape:window-height="409"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g12" />
+  <g
+     clip-path="url(#clip0_3771_8677)"
+     id="g12">
+    <path
+       d="M 18.492753,2.7703109 H 5.4490632 c -1.4827649,0 -2.6854703,1.2056281 -2.6854703,2.6919925 V 18.537697 c 0,1.486364 1.2027054,2.691992 2.6854703,2.691992 H 18.492753 c 1.482749,0 2.685454,-1.205628 2.685454,-2.691992 V 5.4623034 c 0,-1.4863644 -1.202705,-2.6919925 -2.685454,-2.6919925 z M 15.333506,15.845704 H 8.6083243 c -0.7423439,0 -1.2027054,-0.807598 -0.8267418,-1.447908 L 11.159534,8.6311634 c 0.37211,-0.6345411 1.28708,-0.6326182 1.655344,0.00384 l 3.347301,5.7666336 c 0.37211,0.640309 -0.09015,1.444061 -0.828673,1.444061 z"
+       fill="#212647"
+       id="path1"
+       style="fill:#888a85;stroke-width:0.76914" />
+  </g>
+  <defs
+     id="defs12">
+    <clipPath
+       id="clip0_3771_8677">
+      <rect
+         width="142"
+         height="24"
+         fill="#ffffff"
+         id="rect12"
+         x="0"
+         y="0" />
+    </clipPath>
+  </defs>
+</svg>
