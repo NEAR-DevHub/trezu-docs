@@ -1,0 +1,115 @@
+---
+title: "Custom Requests"
+description: "Author reusable forms that let your treasury file any on-chain call as a proposal, with no developer needed"
+---
+
+Trezu builds your everyday treasury proposals for you - payments, transfers, swaps, and staking. But your treasury is a SputnikDAO, and a SputnikDAO can call **any method on any contract**. Until now Trezu could show you those calls when someone else created them, it just had no way for you to create them yourself.
+
+**Custom Requests** close that gap. A member authors a reusable form once, and from then on anyone on the team can fill that form to file an arbitrary on-chain call as a normal request - with no hand-written arguments and no developer needed. Because it travels through your treasury's usual approvals and execution, a template never grants any authority on its own.
+
+<Warning>
+  Enabling Custom Requests and authoring templates are reserved for members with the [Governance](/governance/members-and-roles#governance) role - the same permission that governs changes to your treasury policy. Once a template exists, any team member can fill and file it.
+</Warning>
+
+***
+
+## How It Works
+
+A custom request moves through three stages, each gated by its usual permission.
+
+<Steps>
+  <Step title="Author a template">
+    A Governance member describes the call - the contract and method to invoke - and lays out the form members will fill. The template is saved to your treasury and reused as often as you like.
+  </Step>
+  <Step title="Fill the form">
+    Any team member opens the template, fills in the inputs such as an amount, an account, or a message, and submits. Trezu assembles the on-chain call for them.
+  </Step>
+  <Step title="Approve and execute">
+    The submission lands in the **`Requests`** section as a `Pending` request, where the team reviews and votes on it just like any other. Once it reaches the voting threshold, the treasury executes the call.
+  </Step>
+</Steps>
+
+The author fixes the parts that must never change - the contract, the method, the attached deposit, and the gas. Members only ever supply the **arguments** to the call, so a filled request can never be redirected to a different contract or method.
+
+***
+
+## Turning It On
+
+Custom Requests ship disabled. A Governance member turns the feature on from **`Settings`** → **`Developer`**, and a **`Request Templates`** section appears in the left sidebar for everyone on the team.
+
+![Enabling Custom Requests from Settings → Developer](/assets/docs/custom-templates/developer-settings.png)
+
+<Check>
+  The whole team can see and fill templates as soon as the feature is on. Only authoring stays with Governance.
+</Check>
+
+***
+
+## Authoring a Template
+
+A template is defined by a **manifest**, a small JSON document that captures the call and the form together. The editor gives you two ways to build one, and you can switch between them at any time.
+
+<CardGroup cols={2}>
+  <Card title="Visual" icon="table-cells">
+    A form builder that is arguments-first. Each argument is either **static**, a fixed value the author sets, or a **member input** that is filled in at request time. Reference an input and it becomes a form field automatically. This is the default, and it covers most templates.
+  </Card>
+  <Card title="Code" icon="code">
+    A live-validated JSON editor over the same manifest, handy for pasting one in or making power edits.
+  </Card>
+</CardGroup>
+
+![The arguments-first Visual editor, with a fixed on-chain call and arguments that are each static or a member input](/assets/docs/custom-templates/visual-editor.png)
+
+<Tip>
+  Would rather not touch JSON? Hand the [Manifest DSL reference](/custom-requests/manifest-dsl) to any AI assistant, describe your proposal in plain English, and paste the manifest it returns into the **`Code`** tab. There is also a self-contained [`trezu-custom-proposal-template` skill](https://github.com/NEAR-DevHub/trezu/tree/main/docs/trezu-custom-proposal-template) for Claude Code, Claude.ai, and Codex.
+</Tip>
+
+***
+
+## What Members Fill
+
+Once a template exists, filling it is as easy as any other request. A member opens it, completes the generated form, and clicks **`File Proposal`**. A one-field template is about as simple as it gets.
+
+![Filling a one-field Set Greeting template](/assets/docs/custom-templates/custom-form-simple.png)
+
+The same mechanism scales all the way up to serious operations. Here a recovery-mint template gathers six inputs and files an omni-FT `ft_deposit` call, with every field validated before the request can be submitted.
+
+![Filling the multi-field Recovery Mint template](/assets/docs/custom-templates/custom-form-standard.png)
+
+***
+
+## Who Can Do What
+
+| Action | Required |
+|--------|----------|
+| Enable the feature, or author, edit, or delete a template | Governance role |
+| See and fill a template | Team membership |
+| Approve the resulting request | Your treasury's normal voting rules |
+
+***
+
+## Frequently Asked Questions
+
+<Accordion title="Can I edit or delete a template after members have used it?">
+  Yes. A Governance member can edit or delete any template at any time from the **`Request Templates`** section. Requests that members already filed are unaffected, and continue through their normal review and execution.
+</Accordion>
+
+<Accordion title="Can a member change which contract or method gets called?">
+  No. The author fixes the contract, method, deposit, and gas when they build the template. Members can only fill in the arguments, so a filled request can never be pointed somewhere else.
+</Accordion>
+
+<Accordion title="Do I need to write JSON to author a template?">
+  Not at all. The Visual editor lets you build the whole call and its form without touching JSON. If you would rather describe what you want in plain English, hand the [Manifest DSL reference](/custom-requests/manifest-dsl) to an AI assistant and paste the result into the **`Code`** tab.
+</Accordion>
+
+<Accordion title="What does a custom request look like to approvers?">
+  Exactly like any other request. It appears in **`Requests`** as `Pending`, shows the call it will make, and follows your treasury's normal voting rules before it executes.
+</Accordion>
+
+***
+
+## What's Next?
+
+<Check>
+  Ready to build one? Head to the [Manifest DSL reference](/custom-requests/manifest-dsl) for the full shape of a manifest, useful whether you are hand-authoring a template or checking what an assistant produced.
+</Check>
