@@ -1,0 +1,143 @@
+---
+title: "Login Methods"
+description: "Find all the ways in which you can access Trezu to manage your treasuries"
+---
+
+Trezu offers multiple ways to log in and access your treasuries, depending on your needs and preferences.
+
+![Trezu login modal with passkey and crypto wallet options](/assets/docs/login/login-modal.jpeg)
+
+Those familiar with crypto wallets can readily connect their accounts, as Trezu supports multiple
+wallets from Solana, Ethereum, and NEAR.
+
+For those who do not have a crypto wallet - or simply prefer another safe and easy way to access -
+Trezu offers passkeys. Passkeys let you securely access Trezu using your device’s built-in authentication,
+such as your fingerprint or facial recognition.
+
+<Note>
+  Trezu is a non-custodial solution, which means that your funds are always under your control.
+</Note>
+
+<Tip>
+  Both passkeys and crypto wallets gives you access to all features, so you can safely choose whichever fits your needs best.
+</Tip>
+
+***
+
+## Comparison of Login Methods
+
+|                                                | 🫆 Passkeys                               | 🌐 Crypto Wallets                       |
+|------------------------------------------------|-------------------------------------------|-----------------------------------------|
+| Easy to secure                                 | ✅ Yes, kept safe by your device           | ⚠️ Need to secure a recovery phrase offline |
+| Grants access to all features                  | ✅ Yes                                     | ✅ Yes                                   |
+| Can use and create **confidential treasuries** | ✅ Yes                                     | ✅ Yes                                   |
+| Can be used to log in to other blockchain apps | 🔒 No, your passkey is for Trezu only     | ✅ Yes, can be used in other crypto apps |
+| Can be used on other devices                   | ⚠️ Depends on where your passkey is stored | ✅ Yes, using the recovery phrase        |
+
+---
+
+## Passkeys
+
+Passkeys are a secure authentication method that allows you to access Trezu using your own device's
+authentication method, such as fingerprint or facial recognition.
+
+<Tip>
+  Passkeys are supported on most modern devices and browsers, and they provide a convenient and secure way to access your treasuries without needing to configure a crypto wallet.
+</Tip>
+
+### Using Passkeys
+
+To start using passkeys, select `Sign Up` in the login modal. You will then be prompted to create a passkey on your device.
+
+![Passkey sign-up option in the Trezu login modal](/assets/docs/login/passkeys-modal.jpeg)
+
+Once created, you can use the `Sign In` option to access Trezu using your passkey. Trezu will
+**automatically create an account for you**, which you can then use to create a treasury
+or join an existing one.
+
+![Trezu dashboard after signing in with a passkey](/assets/docs/login/passkeys-dashboard.jpeg)
+
+<Tip>
+  There is no need to fund your account, as Trezu covers the cost of creating and
+  using a treasury.
+</Tip>
+
+***
+
+## Crypto Wallets
+
+Trezu supports some of the most popular wallets from Solana, Ethereum, and NEAR, including:
+
+<Columns cols={4}>
+  <Card title="MetaMask" img="/assets/docs/login/metamask.svg" />
+  <Card title="Phantom" img="/assets/docs/login/phantom.svg" />
+  <Card title="Fireblocks" img="/assets/docs/login/fireblocks.svg" />
+  <Card title="Binance Wallet" img="/assets/docs/login/binance-wallet.svg" />
+  <Card title="Meteor Wallet" img="/assets/docs/login/meteor-wallet.svg" />
+  <Card title="and more..." img="/assets/docs/login/walletconnect.svg" />
+</Columns>
+
+### Using a Crypto Wallet
+
+To connect with your wallet, simply select it from the login modal. If you do not see
+your wallet in the list, select `EVM Wallets`. This lets you connect Ethereum-compatible
+wallets through WalletConnect, including Coinbase Wallet, Rainbow, Trust Wallet, and many others.
+
+![Crypto wallet selection options in the Trezu login modal](/assets/docs/login/web3-login.jpeg)
+
+If you connect with a wallet from Solana or Ethereum, Trezu will automatically create
+a new account for you in NEAR Protocol. This is because our treasuries live in NEAR,
+and thus require a NEAR account to be able to create and manage them.
+
+Your new NEAR account will have the form of `0s<40chars>` (e.g. `0s387f...`). This is
+known as a `deterministic account`, and is derived from your wallet address. If you
+log in from another device or browser, you will connect to the same NEAR account in
+Trezu.
+
+<Tip>
+  There is no need to fund your NEAR account, as Trezu covers the cost of creating
+  and using a treasury.
+</Tip>
+
+***
+
+## Hardware Wallets
+
+Trezu supports Ledger, a popular hardware wallet that allows you to securely store your crypto assets offline.
+You can connect your Ledger device to Trezu and use it to manage your treasuries.
+
+<Info>
+  Learn more about how to use Ledger with Trezu in our [Ledger Guide](/guides/ledger)
+</Info>
+
+***
+
+## Frequently Asked Questions
+
+<Accordion title="Which methods should I use?">
+  Use passkeys if you are new to crypto wallets, or if you want to create a separate account for Trezu that is secure and easy to use. Otherwise, you can use your wallet if you already have one.
+</Accordion>
+
+<Accordion title="Do all login methods have access to the same features?">
+  Yes, all login methods have access to the same features and functionality. The only difference is the way in which you authenticate and access your treasuries.
+</Accordion>
+
+<Accordion title="If I log in with my wallet, does Trezu have access to my funds?">
+  Both your funds and your treasuries' funds are always under your control. Trezu is a non-custodial solution, which means that we do not hold your keys or funds, and never have access to them.
+</Accordion>
+
+<Accordion title="I logged in with my crypto wallet, but see a different address connected">
+When you log in with an Ethereum or Solana wallet, we automatically create a new account
+for you in NEAR Protocol, the blockchain where Trezu lives.
+
+This account is deterministically derived from your wallet address, so if you log in from another
+device or browser, you will see the same NEAR account connected to your wallet.
+
+</Accordion>
+
+
+***
+
+## Ready to get started?
+
+[Create your treasury now](https://trezu.app/) and start managing your team's crypto assets securely and collaboratively!
