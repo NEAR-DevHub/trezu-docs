@@ -63,6 +63,7 @@
         "group": "User Guides",
         "pages": [
           "guides/ledger",
+          "guides/treasury-setups",
           {
             "group": "Confidential Treasuries",
             "pages": [

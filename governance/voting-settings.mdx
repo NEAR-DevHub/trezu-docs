@@ -8,7 +8,7 @@ When creating a treasury, you will be able to set up the `Voting Threshold` for 
 ![Creating Treasury](/assets/docs/governance/creating-treasury-members.webp)
 
 <Danger>
-Voting thresholds prevent any single member from acting alone. Proceed with caution when setting up voting thresholds.
+Be mindful of the threshold you set. A threshold of 1 allows a single member to approve actions by themselves, but requiring all members to approve an action can block operations if an account gets lost.
 </Danger>
 
 ***
@@ -69,6 +69,18 @@ If the required number of votes is reached within the voting duration, the propo
 <Info>
   In contrast to voting thresholds, which can be configured separately for Governance and Finance proposals, the voting duration is a single setting that applies to all proposals in the treasury, regardless of their type.
 </Info>
+
+***
+
+## Choosing a Threshold
+
+For a personal treasury, you can start with a *1-of-2* setup using a passkey and Ledger - both under your control. Move to a 2-of-3 setup as the treasury grows by adding an independent new wallet (e.g. a Metamask or Meteor)
+
+For teams, a **2-of-3** setup is a recommended starting point. Make sure no single person controls enough accounts to approve alone. Larger teams can use setups like **3-of-5**, leaving enough members available to keep operating if one account is lost.
+
+<Tip>
+  Keep access and recovery methods separate across signers. See [Choosing Your Signers](/login#choosing-your-signers) for personal and team configurations.
+</Tip>
 
 ***
 

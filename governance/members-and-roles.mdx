@@ -3,7 +3,7 @@ title: "Members and Roles"
 description: "Discover how to manage your treasury's team members and their roles"
 ---
 
-In Trezu, each treasury is a shared multisig account, where multiple members collectively control the treasury's assets and actions. No single member has unilateral control over the treasury, and to perform any action the team needs to reach consensus.
+In Trezu, each treasury is a shared multisig account, where members can create and vote on different proposals based on their roles. Each member is defined by an on-chain account, which the member controls through a passkey or supported crypto wallet.
 
 ![Members](/assets/docs/governance/members.webp)
 
@@ -18,11 +18,11 @@ In Trezu, each treasury is a shared multisig account, where multiple members col
 A member in Trezu represents a wallet address that can participate in the treasury.
 
 Each member:
-- Connects using their own wallet (e.g. a browser wallet, mobile wallet, or hardware wallet)
+- Connects using their own wallet (e.g. passkeys, mobile wallet, or hardware wallet)
 - Signs proposals and votes using that wallet
 - Acts independently from other members
 
-This is the core multisig concept: multiple wallets collectively control one treasury. No single member has unilateral control over the treasury's funds, and to perform any action the team needs to reach consensus.
+This is the core multisig concept: multiple wallets collectively control one treasury. No single member should have unilateral control over the treasury's funds, and to perform any action the team needs to reach consensus.
 
 ***
 
@@ -136,6 +136,13 @@ When assigning roles and permissions within your treasury, consider the followin
 
 * **Use least privilege**: Grant only the roles needed for each member’s responsibilities
 * **Separate duties**: Maintain a clear separation between financial operations and treasury configuration, do not assign the Governance role to Requestors or Finance members
-* **Use voting thresholds intentionally**: Higher-risk actions (like configuration changes) should require more approvals
+* **Use voting thresholds intentionally**: Higher-risk actions (like configuration changes) should require more approvals, but remember to never use strict thresholds (N-of-N) that could lock the treasury if a single key is lost
 * **Do regular reviews**: Periodically review assigned roles and permissions to ensure they align with your treasury's current needs
 * **Governance caution**: Exercise caution when assigning the Governance role, as this role has extensive control over the treasury's settings
+* **Use different signer types**: Passkeys, Ledger, and crypto wallets have different security properties, so using a mix helps mitigate the downside of any single type
+
+### Single Member Treasuries
+
+For solo teams, you can start with 2 accounts (a passkey and a Ledger), and give both roles **Finance** and **Governance** to them. Then, setup a threshold of 1-of-2 in both Finance and Governance votes. This allows either account to approve actions independently while maintaining a basic level of security.
+
+Once the treasury starts to grow, you can add a third account using an independent wallet app - e.g. Metamask or Meteor - and adjust the voting thresholds to 2-of-3 to enhance security and ensure that no single key can unilaterally approve actions.
