@@ -19,20 +19,20 @@ such as your fingerprint or facial recognition.
 </Note>
 
 <Tip>
-  Both passkeys and crypto wallets gives you access to all features, so you can safely choose whichever fits your needs best.
+  Passkeys, Ledger and crypto wallets give you access to all features.
 </Tip>
 
 ***
 
 ## Comparison of Login Methods
 
-|                                                | 🫆 Passkeys                               | 🌐 Crypto Wallets                       |
-|------------------------------------------------|-------------------------------------------|-----------------------------------------|
-| Easy to secure                                 | ✅ Yes, kept safe by your device           | ⚠️ Need to secure a recovery phrase offline |
-| Grants access to all features                  | ✅ Yes                                     | ✅ Yes                                   |
-| Can use and create **confidential treasuries** | ✅ Yes                                     | ✅ Yes                                   |
-| Can be used to log in to other blockchain apps | 🔒 No, your passkey is for Trezu only     | ✅ Yes, can be used in other crypto apps |
-| Can be used on other devices                   | ⚠️ Depends on where your passkey is stored | ✅ Yes, using the recovery phrase        |
+|                                                | 🫆 Passkeys                               | 📱 App Wallets                             | 🔐 Ledger                                              |
+|------------------------------------------------|-------------------------------------------|--------------------------------------------|--------------------------------------------------------|
+| Easy to secure                                 | ✅ Yes, kept safe by your device           | ⚠️ Need to secure a recovery phrase offline | ⚠️ Need to protect the device and recovery phrase       |
+| Grants access to all features                  | ✅ Yes                                     | ✅ Yes                                      | ✅ Yes                                                  |
+| Can use and create **confidential treasuries** | ✅ Yes                                     | ✅ Yes                                      | ✅ Yes                                                  |
+| Can be used to log in to other blockchain apps | 🔒 No, your passkey is for Trezu only     | ✅ Yes, can be used in other crypto apps    | ✅ Yes, in apps that support Ledger                     |
+| Can be used on other devices                   | ⚠️ Depends on where your passkey is stored | ✅ Yes, using the recovery phrase           | ✅ Yes, by connecting your Ledger to a supported device |
 
 ---
 
@@ -112,10 +112,37 @@ You can connect your Ledger device to Trezu and use it to manage your treasuries
 
 ***
 
+## Choosing Your Signers
+
+A general rule of thumb is that app wallets are harder to secure and simpler to compromise than passkeys or hardware wallets.
+However, you should always **use a combination of different types of signers**, even for personal treasuries.
+
+Different signers have different security properties, so using a mix helps mitigate
+the risk of a single point of failure:
+
+- App wallets security depends on how well you store the private key, as well on which sites you use them.
+- Passkeys are encrypted are bind to specific sites, but if you lose access to the device, you may lose access to your passkeys.
+- Hardware wallets require physical confirmation to act, but design issues or tampering can still compromise their security.
+
+Because of this, use a combination of different signers - ideally a minimum of three - and remember to setup your [roles](/governance/members-and-roles#best-practices) and [voting thresholds](/governance/voting-settings#choosing-a-threshold) accordingly.
+
+<Warning>
+  **Use independent devices and recovery methods**
+  
+  If your passkey and wallet are on the same device, then your device is
+  a single point of failure. If your wallet and Ledger share the same recovery phrase, both accounts become vulnerable if the phrase is compromised.
+</Warning>
+
+***
+
 ## Frequently Asked Questions
 
 <Accordion title="Which methods should I use?">
-  Use passkeys if you are new to crypto wallets, or if you want to create a separate account for Trezu that is secure and easy to use. Otherwise, you can use your wallet if you already have one.
+  Use a passkey for easy access to Trezu. For a personal treasury, you can add a Ledger account at 1-of-2, then an independent EVM wallet and move to 2-of-3. For teams, we recommend starting with 2-of-3 across trusted members. Learn more in [Choosing Your Signers](#choosing-your-signers).
+</Accordion>
+
+<Accordion title="Is one passkey enough to keep my treasury safe?">
+  A passkey is a secure way to log in, but using it as your only treasury account leaves you without a second way in if you lose access. Whether you can recover it or use it on another device depends on where it is stored. Add a separate Ledger account, then an independent EVM wallet at 2-of-3 so approvals require two accounts.
 </Accordion>
 
 <Accordion title="Do all login methods have access to the same features?">

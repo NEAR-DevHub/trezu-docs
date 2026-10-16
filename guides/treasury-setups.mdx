@@ -1,0 +1,96 @@
+---
+title: "Treasury Setups"
+description: "Discover how to balance security and operational speed in your treasury setups"
+---
+
+Every growing Web3 team faces the same operational dilemma: you want strict control over your capital, but nobody wants to wait three days for a simple contractor payout to clear. The goal of a great treasury setup is balancing a resilient structure with operational speed.
+
+Trezu is a non-custodial multisig interface that solves this by using **Role-Based Permissions** and flexible **Voting Thresholds**. Instead of giving everyone the exact same power, you define exactly who can request funds, who approves daily payments, and who holds the master keys to the rules.
+
+---
+
+## Core Trade-Offs
+
+Before configuring your workspace, it helps to understand the fundamental trade-offs of multisig architecture. A great setup balances these three realities:
+
+- **More approvals needed = more coordination.** Increasing your voting threshold (e.g. from 1-of-2 to 3-of-5) eliminates single points of failure, but it means routine payments will take longer to approve.
+
+- **More members = larger surface area:** While distributing power is the goal, adding members just to have more signers increases the chances of an individual's device being compromised or a key being lost. Only add members who strictly need access to do their jobs.
+
+- **Unanimous thresholds = lockout risk:** A strict, unanimous threshold (like 3-of-3) sounds protective, but if just one wallet is lost, the entire treasury is permanently frozen. Thresholds like 2-of-3 or 3-of-5 balance security with recoverability: no single key can approve alone, and losing one key won't lock you out.
+
+---
+
+## How to Setup your Treasury
+
+Because Trezu is built to scale with you, your rules are not set in stone. Here are four practical treasury templates you can adapt based on your team's size and trust level.
+
+### The Founding Team (2–5 people)
+
+**The Scenario:** Early-stage startups managing seed funding. There is high trust among the founders, but relying on a single "admin wallet" is an unacceptable point of failure.
+
+**The Recommended Setup:**
+
+- **Governance (2-of-3 Threshold):** Use 3 signers that the founders control: a passkey, a Ledger, and a crypto wallet app. Governance is used for changing rules or adding members.
+
+- **Finance (1-of-2 or 2-of-3 Threshold):** Assigned to the founders' everyday browser wallets (ideally a passkey or Ledger). A fast 1-of-2 threshold allows any single founder to quickly approve a routine software subscription or a small payout without bottlenecking the others. A 2-of-3 threshold adds an extra layer of security for larger treasuries.
+
+- **Requestor:** Anyone who can draft and submit invoices for approval, e.g., a financial assistant or even an AI agent.
+
+> Remember to not use strict unanimous thresholds for finance, as losing a single key could lock you out of your treasury
+
+### The Growing Startup (10–50 people)
+
+**The Scenario:** Scaling teams with dedicated operations and finance personnel. The team manages higher transaction volumes, like multi-chain bulk payroll, and strict separation of duties is now legally and operationally required.
+
+**The Recommended Setup:**
+
+- **Governance (3-of-5 Threshold):** A strict consensus threshold held by the Board of Directors, core founders, and perhaps a trusted lead investor. They should use secure signers, such as passkeys or Ledger.
+
+- **Finance (2-of-3 or 2-of-4 Threshold):** Held by the Finance Lead, Operations Manager, and CEO. This ensures the Finance Lead cannot execute a batch payment entirely alone, requiring a second sign-off from ops or leadership. Here you can mix passkeys, Ledgers, and wallet apps - such as MetaMask or Meteor.
+
+- **Requestor:** Department leads (to request project budgets) and regular external contractors (to submit their own payment requests for review).
+
+### The Active DAO or Community Fund
+
+**The Scenario:** Decentralized organizations managing high-volume contributor payouts across multiple chains that require high transparency and broad participation.
+
+**The Recommended Setup:**
+
+- **Governance (4-of-7 Threshold):** A high threshold assigned to an elected council or a trusted multisig committee to prevent hostile takeovers of the treasury rules.
+
+- **Finance (3-of-5 Threshold):** Assigned to an operations working group responsible for reviewing and executing weekly contributor grants.
+
+- **Requestor:** Open to active community members so anyone can transparently submit a bounty or grant request on-chain.
+
+> Use a mix of passkeys, Ledgers, and independent wallet apps across the council and operations group. Keep recovery methods separate and ensure no single person controls enough signers to meet either threshold.
+
+### The Solo Operator
+
+**The Scenario:** An individual managing significant personal cross-chain assets who wants stronger defense against phishing or lost keys than a single hardware wallet provides.
+
+**The Recommended Setup (Personal Vault):**
+
+- **Start with Two Signers (1-of-2):** Add your passkey account and a separate Ledger account as treasury members, with both Governance and Finance roles. Either signer can approve an action, so you can keep operating and replace a lost signer using the other.
+
+- **Do not use strict thresholds:** A 2-of-2 threshold freezes approvals if you lose access to either signer.
+
+- **Move to Three Signers (2-of-3):** As funds grow, consider adding an independent wallet app (such as MetaMask or Meteor) with Governance and Finance roles, verify you can access all three accounts, then raise the voting thresholds.
+
+---
+
+## When to Update Your Setup
+
+Your treasury should evolve alongside your organization. The Governance role exists specifically so you can update these rules when operational realities shift. Plan to review and update your treasury setup during these key events:
+
+- **A New Hire:** When bringing on a dedicated Finance Lead or Operations Manager.
+
+- **A Team Departure:** Immediately removing a departing member's wallet access to maintain internal integrity.
+
+- **A Major Funding Event:** Upgrading your Governance thresholds (e.g., from 2-of-3 to 3-of-5) after raising a new round of capital.
+
+- **Promotion to Leadership:** Granting Finance or Governance roles to newly promoted executives.
+
+- **A Lost or Compromised Signer:** Use the remaining Governance quorum to remove the affected member and add a replacement while you can still meet the threshold.
+
+  > Remember to raise your thresholds whenever you add new signers to ensure your treasury remains secure and operational.
