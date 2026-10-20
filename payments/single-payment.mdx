@@ -36,7 +36,7 @@ Navigate to the **`Payments`** section in the left sidebar, then simply fill in 
 
 Payments sent to [near.com](https://near.com/) accounts are private, as the recipient will need to [log in to near.com](/guides/confidential-payments) to access and withdraw the funds. In that case, the sender will appear as the confidential treasury's account on [near.com](https://near.com/).
 
-Payments sent directly to public wallet addresses are also private, as they are executed within the private shard. However, in that case, the sender will be the near.com settlement account, as the funds are bridged from the private shard to the public one before being sent to the recipient.
+Payments sent directly to public wallet addresses redeem the corresponding tokens held by your treasury on the private shard and release the funds to the recipient on the selected chain. The recipient sees the funds come from the NEAR Intents account on that chain, which is part of the `near.com` infrastructure. Learn more about [how assets are held and transferred](/confidential-treasuries#how-do-confidential-treasuries-work).
 
 ***
 

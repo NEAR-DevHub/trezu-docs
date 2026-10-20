@@ -27,6 +27,18 @@ The main difference is that confidential treasuries are deployed on a **private 
   In NEAR, all shards are public by default, which means that anyone can see all the funds and transactions happening on them. However, NEAR also allows the creation of private shards, which run on the same technology as the public ones, but with the main difference of **not exposing any data to the public**. This makes private shards an ideal solution for confidential treasuries, as they provide all the security and functionality of a public shard, but with the added privacy of not exposing any financial data to the public.
 </Accordion>
 
+<Accordion title="Where are assets held, and how do deposits and withdrawals work?">
+  Your treasury holds assets as token balances on the `near.com` smart contract deployed within the private shard.
+
+  `near.com` infrastructure manages non-custodial pools on multiple public chains. When you deposit assets into these pools, the corresponding token balances are credited to your treasury on the private shard.
+
+  Swaps are reflected as changes in the token balances within your treasury on the private shard. For example, if you swap ETH for BTC, the ETH balance decreases while the BTC balance increases accordingly.
+
+  When you withdraw assets from your treasury, the corresponding token balances on the private shard are redeemed, and the pooled assets on the destination chain are used to fulfill the withdrawal.
+
+  This lets your treasury manage assets from multiple chains without maintaining a separate wallet on each chain. Your team controls the treasury's assets; the pooled accounts provide the backing and infrastructure for deposits and withdrawals.
+</Accordion>
+
 ***
 
 ## Public vs Confidential overview
@@ -92,7 +104,7 @@ Confidential treasuries can create payments in all supported assets, and the rec
 
 Payments to [near.com](https://near.com/) confidential accounts will be executed within the private shard, so the recipient will need to log in to [near.com](https://near.com/) to access and withdraw the funds.
 
-When making payments to public wallets, Trezu will automatically bridge the funds from the private shard to the recipient's address on the selected chain. In this case, the public recipient will see the funds arriving from the near.com settlement account, as that is the account used to bridge funds from the private shard to the public one.
+When making payments to public wallets, Trezu automatically redeems the corresponding token balances on the private shard and releases the funds to the recipient's address on the selected chain. The recipient sees the funds arriving from the NEAR Intents account on the destination chain, which is part of the `near.com` infrastructure.
 
 ***
 
