@@ -1,0 +1,22 @@
+/* Mintlify keeps its result-count status empty while searching. Reveal an
+   empty-state message only once that status is populated and no hits exist.
+   Keep the original count available to screen readers. These selectors depend
+   on Mintlify's search markup and should be checked after platform updates. */
+[data-component-part="search-modal"]:has(#search-input:not(:placeholder-shown)):not(:has([data-component-part="search-item"])) [role="status"]:not(:empty) {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 1.5rem 1rem;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  text-align: center;
+  font-size: 0;
+}
+
+[data-component-part="search-modal"]:has(#search-input:not(:placeholder-shown)):not(:has([data-component-part="search-item"])) [role="status"]:not(:empty)::after {
+  content: "No results found.";
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
